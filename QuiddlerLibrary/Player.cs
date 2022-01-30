@@ -15,12 +15,16 @@ namespace QuiddlerLibrary
 {
     public class Player : IPlayer
     {
+        private List<Card> _playerCards = new List<Card>();
+        private int _totalPoints = 0;
+        private Deck _deck;
+
         public Player(Deck d)
         {
-
+            _deck = d;
         }
-        public int CardCount { get => throw new NotImplementedException(); init => throw new NotImplementedException(); }
-        public int TotalPoints { get => throw new NotImplementedException(); init => throw new NotImplementedException(); }
+        public int CardCount { get => _playerCards.Count(); }
+        public int TotalPoints { get => _totalPoints; }
 
         /*Method Name: Discard
         *Purpose: Accepts a string representing a card and verifies that the card is in the player’s hand. 
@@ -31,7 +35,7 @@ namespace QuiddlerLibrary
         */
         public bool Discard(string card)
         {
-            throw new NotImplementedException();
+            return _deck.PushToDiscardStack(card);
         }
 
         /*Method Name: DrawCard
@@ -43,8 +47,19 @@ namespace QuiddlerLibrary
         */
         public string DrawCard()
         {
-            throw new NotImplementedException();
+            try
+            {
+                Card drawnCard = _deck.DrawCardFromUndealtCards();
+                _playerCards.Add(drawnCard);
+                return drawnCard.CardLetter;
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                throw new InvalidOperationException(ex.Message);
+            }
+            
         }
+
 
         /*Method Name: PickupTopDiscard
         *Purpose: Takes the top card in the discard pile and adds it to the player’s hand. 
@@ -54,7 +69,9 @@ namespace QuiddlerLibrary
         */
         public string PickupTopDiscard()
         {
-            throw new NotImplementedException();
+            Card card = _deck.DrawCardFromDiscardCards();
+            _playerCards.Add(card);
+            return card.CardLetter;
         }
 
         /*Method Name: PlayWord
@@ -64,9 +81,14 @@ namespace QuiddlerLibrary
         *Accepts: the word as a string
         *Returns: the points as a int 
         */
-        public int PlayWord(string candiadate)
+        public int PlayWord(string candidate)
         {
-            throw new NotImplementedException();
+            int resultOfTestWord = TestWord(candidate);
+
+            if (resultOfTestWord == 0)
+                return 0;
+
+            // th e r e
         }
 
         /*Method Name: TestWord
@@ -81,7 +103,24 @@ namespace QuiddlerLibrary
         */
         public int TestWord(string candidate)
         {
-            throw new NotImplementedException();
+            string strConcatenated = candidate.Replace(" ", String.Empty);
+            Application microsoftWordObject = new Application();
+
+
+            bool isAWord = microsoftWordObject.CheckSpelling(strConcatenated);
+
+        }
+
+        public override string ToString()
+        {
+            StringBuilder strBuilder = new StringBuilder();
+            foreach(Card element in _playerCards)
+            {
+                strBuilder.Append($"{element} ");
+            }
+            strBuilder.Length--;
+
+            return strBuilder.ToString();
         }
     }
 }
