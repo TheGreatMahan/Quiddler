@@ -14,10 +14,10 @@ namespace QuiddlerLibrary
         private int[]    _counts  = {  10,  12,  8 ,  8 ,  4 ,  4 ,  6 ,  6 ,  4 ,  4 ,  2 ,  6 ,  6 ,  2 ,  4 ,  2 ,  2 ,  2  ,  2  ,  2 ,  2 ,  2 ,  2  ,  2  ,  2 ,   2 ,  2 ,  2 ,  2 ,  2 ,  2 };
 
         // Private attributes
-        private List<Card> _cardsList = new List<Card>();
-        private int _index = 0;
-        private int _cardsPerPlaye = 0;
-        private Stack<Card> _discardStack = new Stack<Card>();
+        private static List<Card> _cardsList = new List<Card>();
+        private static int _index = 0;
+        private static int _cardsPerPlayer = 0;
+        private static Stack<Card> _discardStack = new Stack<Card>();
 
         public Deck()
         {
@@ -38,14 +38,45 @@ namespace QuiddlerLibrary
                     _cardsPerPlayer = value;
             } 
         }
-        public string TopDiscard { get => _discardStack.Peek().CardLetter; }
+        public string TopDiscard 
+        {
+            get 
+            {
+                if (_discardStack.Count == 0) 
+                {
+                    _discardStack.Push(DrawCardFromUndealtCards());
+                }
+
+                return _discardStack.Peek().CardLetter; 
+            } 
+        }
 
         public IPlayer NewPlayer()
         {
-            throw new NotImplementedException();
+            IPlayer player = new Player(this);
+            for (int i = 0; i < _cardsPerPlayer; i++)
+                player.DrawCard();
+
+            return player;
         }
 
+        public override string ToString()
+        {
+            string[] letters = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "cl", "er", "in", "qu", "th"};
 
+            StringBuilder str = new StringBuilder();
+
+            for(int i = 0; i < letters.Length; i++)
+            {
+                str.Append($"{letters[i]}({CountPerLetter(letters[i])})");
+
+                if (letters[i] == "l" || letters[i] == "x" || letters[i] == "th")
+                    str.Append("\n");
+                else
+                    str.Append("\t");
+            }
+            return str.ToString();
+        }
 
         private void DeckGenerator()
         {
@@ -71,6 +102,68 @@ namespace QuiddlerLibrary
         {
             Random rng = new Random();
             _cardsList = _cardsList.OrderBy(card => rng.Next()).ToList();
+        }
+
+        private int CountPerLetter(string letters)
+        {
+            int counter = 0;
+            for (int i = _index; i < _cardsList.Count; i++)
+                if (letters == _cardsList[i].CardLetter)
+                    counter++;
+            return counter;
+        }
+
+        internal Card DrawCardFromUndealtCards()
+        {
+            if (_cardsList.Count > 0)
+                return _cardsList[_index++];
+            
+            throw new ArgumentOutOfRangeException("There is no undealt cards left to draw from!");
+        }
+
+        internal Card DrawCardFromDiscardCards()
+        {
+            if (_discardStack.Count == 0)
+            {
+                _discardStack.Push(DrawCardFromUndealtCards());
+            }
+
+            return _discardStack.Pop();
+        }
+
+        internal bool PushToDiscardStack(string cardLetters)
+        {
+            int value = GetValueOfLetter(cardLetters);
+            
+            if (value == 0)
+                return false;
+
+            Card card = new Card(cardLetters, value);
+           
+            _discardStack.Push(card);
+            return true;
+        }
+
+        internal int GetValueOfLetter(string cardLetters)
+        {
+            return GetValueOfLetterByIndex(FindIndexForLetters(cardLetters));
+        }
+
+        private int FindIndexForLetters(string str)
+        {
+            for (int i = 0; i < _letters.Length; i++)
+                if (str == _letters[i])
+                    return i;
+
+            return -1;
+        }
+
+        private int GetValueOfLetterByIndex(int index)
+        {
+            if (index == -1)
+                return 0;
+
+            return _values[index];
         }
     }
 }

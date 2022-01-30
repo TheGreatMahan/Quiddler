@@ -13,7 +13,7 @@ namespace QuiddlerLibrary
         public string DrawCard();
         public bool Discard(string card);
         public string PickupTopDiscard();
-        public int PlayWord(string candiadate);
+        public int PlayWord(string candidate);
         public int TestWord(string candidate);
         public string ToString();
     }
