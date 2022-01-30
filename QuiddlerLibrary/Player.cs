@@ -13,8 +13,8 @@ namespace QuiddlerLibrary
         {
 
         }
-        public int CardCount { get => throw new NotImplementedException(); init => throw new NotImplementedException(); }
-        public int TotalPoints { get => throw new NotImplementedException(); init => throw new NotImplementedException(); }
+        public int CardCount { get => throw new NotImplementedException();}
+        public int TotalPoints { get => throw new NotImplementedException(); }
 
         public bool Discard(string card)
         {

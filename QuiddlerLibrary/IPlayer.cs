@@ -8,8 +8,8 @@ namespace QuiddlerLibrary
 {
     public interface IPlayer
     {
-        public int CardCount { get; init; }
-        public int TotalPoints { get; init; }
+        public int CardCount { get; }
+        public int TotalPoints { get; }
         public string DrawCard();
         public bool Discard(string card);
         public string PickupTopDiscard();
