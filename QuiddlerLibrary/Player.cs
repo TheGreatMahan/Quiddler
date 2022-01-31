@@ -88,7 +88,6 @@ namespace QuiddlerLibrary
             if (resultOfTestWord == 0)
                 return 0;
 
-            // th e r e
         }
 
         /*Method Name: TestWord
