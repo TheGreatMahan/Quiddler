@@ -109,6 +109,11 @@ namespace QuiddlerClient
             {
                 Console.WriteLine($"Player {i + 1}: {players[i].TotalPoints} points");
             }
+
+            foreach(IPlayer player in players)
+            {
+                player.Discard("Dispose");
+            }
         }
 
 

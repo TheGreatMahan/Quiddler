@@ -13,7 +13,7 @@ using Microsoft.Office.Interop.Word;
 
 namespace QuiddlerLibrary
 {
-    internal class Player : IPlayer, IDisposable
+    internal class Player : IPlayer , IDisposable
     {
         private List<Card> _playerCards = new List<Card>();
         private int _totalPoints = 0;
@@ -37,6 +37,13 @@ namespace QuiddlerLibrary
         */
         public bool Discard(string card)
         {
+
+            if(card == "Dispose")
+            {
+                Dispose();
+                return true;
+            }
+
             for(int i = 0; i < _playerCards.Count; i++)
             {
                 if (_playerCards[i].CardLetter == card)
