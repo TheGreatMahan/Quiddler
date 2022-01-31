@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuiddlerLibrary", "QuiddlerLibrary\QuiddlerLibrary.csproj", "{D82EDD66-1DA0-49C4-9509-0E5EF8FE9723}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuiddlerLibrary", "QuiddlerLibrary\QuiddlerLibrary.csproj", "{D82EDD66-1DA0-49C4-9509-0E5EF8FE9723}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuiddlerClient", "QuiddlerClient\QuiddlerClient.csproj", "{1A94E955-912D-430A-9D9A-CA47A8F37FA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D82EDD66-1DA0-49C4-9509-0E5EF8FE9723}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D82EDD66-1DA0-49C4-9509-0E5EF8FE9723}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D82EDD66-1DA0-49C4-9509-0E5EF8FE9723}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A94E955-912D-430A-9D9A-CA47A8F37FA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A94E955-912D-430A-9D9A-CA47A8F37FA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A94E955-912D-430A-9D9A-CA47A8F37FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A94E955-912D-430A-9D9A-CA47A8F37FA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
