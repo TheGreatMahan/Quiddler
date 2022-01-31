@@ -13,7 +13,7 @@ using Microsoft.Office.Interop.Word;
 
 namespace QuiddlerLibrary
 {
-    internal class Player : IPlayer
+    internal class Player : IPlayer, IDisposable
     {
         private List<Card> _playerCards = new List<Card>();
         private int _totalPoints = 0;
@@ -23,11 +23,6 @@ namespace QuiddlerLibrary
         public Player(Deck d)
         {
             _deck = d;
-        }
-
-        ~Player()
-        {
-            microsoftWordObject.Quit();
         }
 
         public int CardCount { get => _playerCards.Count(); }
@@ -216,6 +211,11 @@ namespace QuiddlerLibrary
 
             _totalPoints += pointsEarned;
             return pointsEarned;
+        }
+
+        public void Dispose()
+        {
+            microsoftWordObject.Quit();
         }
     }
 }
