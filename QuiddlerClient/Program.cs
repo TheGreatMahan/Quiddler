@@ -8,7 +8,7 @@ namespace QuiddlerClient
     {
         static void Main(string[] args)
         {
-            IDeck deck = new Deck();
+            IDeck deck = DeckCreator.Create();
             Console.WriteLine(deck.About);
            
             Console.WriteLine($"\nDeck initialized with the following {deck.CardCount} cards...");
@@ -101,7 +101,7 @@ namespace QuiddlerClient
 
             } while (!someoneHasWon);
 
-            Console.WriteLine("\nRetiring the gaem.");
+            Console.WriteLine("\nRetiring the game.");
 
             Console.WriteLine("The final scores are...");
             Console.WriteLine("‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐");
@@ -148,12 +148,19 @@ namespace QuiddlerClient
             while (true)
             {
                 Console.Write(QuestionString);
-                string characterEntered = Console.ReadLine();
-                if (characterEntered == "y")
-                    return true;
+                char characterEntered = Console.ReadKey().KeyChar;
 
-                else if (characterEntered == "n")
+                if (characterEntered == 'y')
+                {
+                    Console.WriteLine();
+                    return true;
+                }
+
+                else if (characterEntered == 'n')
+                {
+                    Console.WriteLine();
                     return false;
+                }
 
                 Console.WriteLine("Please enter either 'y' or 'n'!");
             }

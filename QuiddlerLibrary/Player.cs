@@ -13,7 +13,7 @@ using Microsoft.Office.Interop.Word;
 
 namespace QuiddlerLibrary
 {
-    public class Player : IPlayer
+    internal class Player : IPlayer
     {
         private List<Card> _playerCards = new List<Card>();
         private int _totalPoints = 0;

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace QuiddlerLibrary
 {
-    public class Deck : IDeck
+    internal class Deck : IDeck
     {
         // 3 arrays for generating a list
         private string[] _letters = { "a", "e", "i", "o", "l", "s", "t", "u", "y", "d", "m", "n", "r", "f", "g", "p", "h", "er", "in", "b", "c", "k", "qu", "th", "w", "cl", "v", "x", "j", "z", "q" };
@@ -176,10 +176,6 @@ namespace QuiddlerLibrary
                 return 0;
 
             return _values[index];
-        }
-        public string ToString()
-        {
-            throw new NotImplementedException();
         }
     }
 }
