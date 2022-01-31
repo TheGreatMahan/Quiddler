@@ -8,7 +8,7 @@ namespace QuiddlerClient
     {
         static void Main(string[] args)
         {
-            IDeck deck = DeckCreator.Create();
+            IDeck deck = new Deck();
             Console.WriteLine(deck.About);
            
             Console.WriteLine($"\nDeck initialized with the following {deck.CardCount} cards...");
