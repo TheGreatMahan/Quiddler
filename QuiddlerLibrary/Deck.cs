@@ -1,4 +1,10 @@
-﻿using System;
+﻿/**
+	 * Class Name:		Deck.cs
+	 * Purpose:			concerete Deck class to hold cards
+	 * Coder:			Mahan Mehdipour Dylan Mahyuddin
+	 * Date:			2022-1-22
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,6 +57,12 @@ namespace QuiddlerLibrary
             }
         }
 
+        /*Method Name: NewPlayer
+        *Purpose: Creates a new player object, immediately populates it with CardsPerPlayer cards 
+        *         and returns an IPlayer interface reference to the player object
+        *Accepts: nothing
+        *Returns: populated player object
+        */
         public IPlayer NewPlayer()
         {
             IPlayer player = new Player(this);
@@ -164,6 +176,10 @@ namespace QuiddlerLibrary
                 return 0;
 
             return _values[index];
+        }
+        public string ToString()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,10 @@
-﻿using System;
+﻿/**
+	 * Class Name:		IPlayer.cs
+	 * Purpose:			Interface for the player class
+	 * Coder:			Mahan Mehdipour Dylan Mahyuddin
+	 * Date:			2022-1-22
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
