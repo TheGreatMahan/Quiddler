@@ -29,9 +29,17 @@ namespace QuiddlerLibrary
 
         public bool Discard(string card)
         {
-            return _deck.PushToDiscardStack(card);
+            for(int i = 0; i < _playerCards.Count; i++)
+            {
+                if (_playerCards[i].CardLetter == card)
+                {
+                    _playerCards.RemoveAt(i);
+                    return _deck.PushToDiscardStack(card);
+                }
+            }
+            return false;
         }
-        // th e r e
+
         public string DrawCard()
         {
             try
@@ -83,7 +91,14 @@ namespace QuiddlerLibrary
 
 
             if (playerHasMoreThanEnoughCards && playerHasAllCandidateLetters && isAWord)
-                return 1;
+            {
+                int pointCalculated = 0;
+                foreach(string letters in candidateLetters)
+                {
+                    pointCalculated +=_deck.GetValueOfLetter(letters);
+                }
+                return pointCalculated;
+            }
 
             return 0;
         }
@@ -93,9 +108,11 @@ namespace QuiddlerLibrary
             StringBuilder strBuilder = new StringBuilder();
             foreach (Card element in _playerCards)
             {
-                strBuilder.Append($"{element} ");
+                strBuilder.Append($"{element.CardLetter} ");
             }
-            strBuilder.Length--;
+
+            if (strBuilder[strBuilder.Length - 1] == ' ')
+                strBuilder.Length--;
 
             return strBuilder.ToString();
         }
