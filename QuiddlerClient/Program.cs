@@ -31,7 +31,7 @@ namespace QuiddlerClient
             {
                 for (int i = 0; i < players.Count; i++)
                 {
-                    Console.WriteLine("‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐");
+                    Console.WriteLine("\n‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐");
                     Console.WriteLine($"Player {i + 1} ({players[i].TotalPoints} points)");
                     Console.WriteLine("‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐\n");
 
@@ -64,7 +64,7 @@ namespace QuiddlerClient
                             if (GetYesOrNoWithQuestion($"Do you want to play the word [{wordEntered}]? (y/n): "))
                             {
                                 players[i].PlayWord(wordEntered);
-                                Console.WriteLine($"Your cards are [{players[i].ToString()} and you have {players[i].TotalPoints} points.]");
+                                Console.WriteLine($"Your cards are [{players[i].ToString()}] and you have {players[i].TotalPoints} points.");
                                 break;
                             }
                         }

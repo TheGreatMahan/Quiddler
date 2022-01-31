@@ -119,15 +119,18 @@ namespace QuiddlerLibrary
 
         private bool PlayersHasAllCandidateLetters(List<Card> playerCards, List<string> candidateStrings)
         {
+            List<Card> playerCardsCopy = new List<Card>();
+            playerCardsCopy.AddRange(playerCards);
+
             foreach (string candidateString in candidateStrings)
             {
                 bool cardExistsInPlayerDeck = false;
-                for (int i = 0; i < playerCards.Count; i++)
+                for (int i = 0; i < playerCardsCopy.Count; i++)
                 {
-                    if (playerCards[i].CardLetter == candidateString)
+                    if (playerCardsCopy[i].CardLetter == candidateString)
                     {
                         cardExistsInPlayerDeck = true;
-                        playerCards.RemoveAt(i);
+                        playerCardsCopy.RemoveAt(i);
                         break;
                     }
                 }
@@ -163,10 +166,11 @@ namespace QuiddlerLibrary
             int pointsEarned = 0;
             foreach (string candidateElement in candidatesStringList)
             {
-                pointsEarned += _deck.GetValueOfLetter(candidateString);
-                _totalPoints += pointsEarned;
+                pointsEarned += _deck.GetValueOfLetter(candidateElement);
+                
             }
 
+            _totalPoints += pointsEarned;
             return pointsEarned;
         }
     }
