@@ -1,6 +1,6 @@
 ﻿namespace QuiddlerLibrary
 {
-    public class Card
+    internal class Card
     {
         public string CardLetter { get; set; }
         public int Value { get; set; }
