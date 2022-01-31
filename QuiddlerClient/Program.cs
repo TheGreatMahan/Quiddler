@@ -162,7 +162,7 @@ namespace QuiddlerClient
                     return false;
                 }
 
-                Console.WriteLine("Please enter either 'y' or 'n'!");
+                Console.WriteLine("\nPlease enter either 'y' or 'n'!");
             }
 
         }
