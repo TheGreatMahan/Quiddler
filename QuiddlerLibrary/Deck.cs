@@ -90,12 +90,22 @@ namespace QuiddlerLibrary
             return str.ToString();
         }
 
+        /*Method Name: DeckGenerator
+        *Purpose: generators a deck by calling AddCardsToList() and Shuffle()
+        *Accepts: nothing
+        *Returns: void
+        */
         private void DeckGenerator()
         {
             AddCardsToList();
             Shuffle();
         }
 
+        /*Method Name: AddCardsToList
+        *Purpose: Adds cards to the deck which is a list<Card>
+        *Accepts: nothing
+        *Returns: void
+        */
         private void AddCardsToList()
         {
             _cardsList = new List<Card>();
@@ -110,12 +120,22 @@ namespace QuiddlerLibrary
             }
         }
 
+        /*Method Name: Shuffle
+        *Purpose: with a random object it shuffle the deck
+        *Accepts: nothing
+        *Returns: void
+        */
         private void Shuffle()
         {
             Random rng = new Random();
             _cardsList = _cardsList.OrderBy(card => rng.Next()).ToList();
         }
 
+        /*Method Name: CountPerLetter
+        *Purpose: counts how many letters in the deck are left
+        *Accepts: string which is the letter
+        *Returns: the total number of letters as a int
+        */
         private int CountPerLetter(string letters)
         {
             int counter = 0;
@@ -125,6 +145,11 @@ namespace QuiddlerLibrary
             return counter;
         }
 
+        /*Method Name: DrawCardFromUndealtCards
+        *Purpose: draws any card that is undealt from the deck
+        *Accepts: nothing
+        *Returns: a Card that hasn't been drawen
+        */
         internal Card DrawCardFromUndealtCards()
         {
             if (_cardsList.Count > 0)
@@ -133,6 +158,11 @@ namespace QuiddlerLibrary
             throw new ArgumentOutOfRangeException("There is no undealt cards left to draw from!");
         }
 
+        /*Method Name: DrawCardFromDiscardCards
+        *Purpose: takes the top card from the discard Stack
+        *Accepts: nothing
+        *Returns: a Card from the discard stack
+        */
         internal Card DrawCardFromDiscardCards()
         {
             if (_discardStack.Count == 0)
@@ -143,6 +173,11 @@ namespace QuiddlerLibrary
             return _discardStack.Pop();
         }
 
+        /*Method Name: PushToDiscardStack
+        *Purpose: removes a card from hand and puts it in the discard Stack
+        *Accepts: a string of the card to be put in the Stack
+        *Returns: a bool on if the card was put in the Stack
+        */
         internal bool PushToDiscardStack(string cardLetters)
         {
             int value = GetValueOfLetter(cardLetters);
@@ -156,11 +191,21 @@ namespace QuiddlerLibrary
             return true;
         }
 
+        /*Method Name: GetValueOfLetter
+        *Purpose: gets the value of the letter card by calling GetValueOfLetterByIndex()
+        *Accepts: a string of the current card
+        *Returns: int as the value of the letter
+        */
         internal int GetValueOfLetter(string cardLetters)
         {
             return GetValueOfLetterByIndex(FindIndexForLetters(cardLetters));
         }
 
+        /*Method Name: FindIndexForLetters
+        *Purpose: finds the index for the current letter
+        *Accepts: a string of the current card
+        *Returns: int as the index of the letter
+        */
         private int FindIndexForLetters(string str)
         {
             for (int i = 0; i < _letters.Length; i++)
@@ -170,6 +215,11 @@ namespace QuiddlerLibrary
             return -1;
         }
 
+        /*Method Name: GetValueOfLetterByIndex
+        *Purpose: by the current index get the value of the letter
+        *Accepts: a int of the index of the letter 
+        *Returns: int based on the value of the letter
+        */
         private int GetValueOfLetterByIndex(int index)
         {
             if (index == -1)

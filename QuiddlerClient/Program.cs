@@ -1,4 +1,10 @@
-﻿using System;
+﻿/**
+	 * Class Name:		Program.cs
+	 * Purpose:			replicate a game of Quiddler
+	 * Coder:			Mahan Mehdipour Dylan Mahyuddin
+	 * Date:			2022-1-22
+*/
+using System;
 using System.Collections.Generic;
 using QuiddlerLibrary;
 
@@ -8,6 +14,7 @@ namespace QuiddlerClient
     {
         static void Main(string[] args)
         {
+            // pre-game/ game set up--------------------
             IDeck deck = new Deck();
             Console.WriteLine(deck.About);
            
@@ -27,6 +34,7 @@ namespace QuiddlerClient
             Console.WriteLine($"The top card which was '{deck.TopDiscard}' was moved to the discard pile.");
 
             bool someoneHasWon = false;
+            // the main game loop--------------------
             do
             {
                 for (int i = 0; i < players.Count; i++)
@@ -101,6 +109,7 @@ namespace QuiddlerClient
 
             } while (!someoneHasWon);
 
+            // end of users turns
             Console.WriteLine("\nRetiring the game.");
 
             Console.WriteLine("The final scores are...");
@@ -110,13 +119,18 @@ namespace QuiddlerClient
                 Console.WriteLine($"Player {i + 1}: {players[i].TotalPoints} points");
             }
 
+            //cleaning up the word app 
             foreach(IPlayer player in players)
             {
                 player.Discard("Dispose");
             }
         }
 
-
+        /*Method Name: GetNumberOfPlayers
+        *Purpose: ask the user for the amount of players
+        *Accepts: nothing
+        *Returns: int of player number
+        */
         private static int GetNumberOfPlayers()
         {
             
@@ -133,6 +147,11 @@ namespace QuiddlerClient
             return numberOfPlayers;
         }
 
+        /*Method Name: GetNumberOfCards
+        *Purpose: ask the user for the amount of cards in a hand
+        *Accepts: nothing
+        *Returns: int of card number
+        */
         private static int GetNumberOfCards()
         {
             int numberOfCards = 0;
@@ -148,6 +167,11 @@ namespace QuiddlerClient
             return numberOfCards;
         }
 
+        /*Method Name: GetYesOrNoWithQuestion
+        *Purpose: validates a yes no response with the user
+        *Accepts: nothing
+        *Returns: int of card number
+        */
         private static bool GetYesOrNoWithQuestion(string QuestionString)
         {
             while (true)

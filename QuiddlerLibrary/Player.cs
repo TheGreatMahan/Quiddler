@@ -163,6 +163,11 @@ namespace QuiddlerLibrary
             return strBuilder.ToString();
         }
 
+        /*Method Name: PlayersHasAllCandidateLetters
+        *Purpose: test to see if the user has all the letters in the word pasted in
+        *Accepts: the List<Card> of the players cards(their hand) and the list<string> of letters(the word cut up)
+        *Returns: bool of if the player did have all the letters
+        */
         private bool PlayersHasAllCandidateLetters(List<Card> playerCards, List<string> candidateStrings)
         {
             List<Card> playerCardsCopy = new List<Card>();
@@ -188,6 +193,11 @@ namespace QuiddlerLibrary
 
         }
 
+        /*Method Name: RemovePlayersCards
+        *Purpose: remove the cards from the player based on the string that was sent in
+        *Accepts: string of the word to be removed
+        *Returns: void
+        */
         private void RemovePlayersCards(string candidateString)
         {
             List<string> candidatesStringList = candidateString.Split(' ').ToList();
@@ -205,6 +215,11 @@ namespace QuiddlerLibrary
             }
         }
 
+        /*Method Name: AddPointsToPlayer
+        *Purpose: finds the total points to be add to the player
+        *Accepts: string of the player word
+        *Returns: int of the points to be add to the player
+        */
         private int AddPointsToPlayer(string candidateString)
         {
             List<string> candidatesStringList = candidateString.Split(' ').ToList();
@@ -220,6 +235,11 @@ namespace QuiddlerLibrary
             return pointsEarned;
         }
 
+        /*Method Name: Dispose
+        *Purpose: cleans up the word object
+        *Accepts: nothing
+        *Returns: void
+        */
         public void Dispose()
         {
             microsoftWordObject.Quit();
